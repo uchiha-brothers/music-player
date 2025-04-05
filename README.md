@@ -1,7 +1,7 @@
 # Music Player Web Application
 
 <p align="center">
-  <img alt="screenshot" src="./css/ss.jpg">
+  <img alt="screenshot" src="./css/image.png">
 </p>
 
 ## 🎵 Overview
