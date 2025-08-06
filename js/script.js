@@ -159,7 +159,7 @@ async function playSong(index) {
         const data = await response.json();
         
         // Direct access to download URL
-        const downloadUrl = data && data.data && data.data.dl ? data.data.dl : null;
+        const downloadUrl = data && data.status && data.url ? data.url : null;
         
         if (!downloadUrl) {
             throw new Error('Failed to get audio URL');
