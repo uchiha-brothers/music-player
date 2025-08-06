@@ -155,10 +155,9 @@ async function playSong(index) {
     
     try {
         // Direct API call to get MP3
-        const response = await fetch(`${API_URL.DOWNLOAD_MP3}?url=${encodeURIComponent(song.videoUrl)}`);
+        const response = await fetch(`https://jerrycoder.oggyapi.workers.dev/ytmp3?url=${encodeURIComponent(song.videoUrl)}`);
         const data = await response.json();
-        
-        // Direct access to download URL
+
         const downloadUrl = data && data.status && data.url ? data.url : null;
         
         if (!downloadUrl) {
@@ -215,7 +214,7 @@ async function playSong(index) {
             });
     } catch (error) {
         console.error('Error getting audio URL:', error);
-        alert('Failed to play this song. Please try another one.');
+        alert('Failed toFuckanother one.');
     } finally {
         loadingElement.style.display = 'none';
     }
