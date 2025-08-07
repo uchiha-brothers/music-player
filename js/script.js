@@ -80,7 +80,7 @@ async function searchSongs(query) {
     
     try {
         // Fetch data from the API
-        const response = await fetch(`${API_URL.SEARCH}?query=${encodeURIComponent(query)}`);
+        const response = await fetch(`${API_URL.SEARCH}?q=${encodeURIComponent(query)}`);
         const data = await response.json();
         
         // Hide loading indicator
