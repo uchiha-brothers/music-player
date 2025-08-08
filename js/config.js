@@ -52,6 +52,6 @@ const UTILS = {
     
     // Get download URL from API response
     getDownloadUrl: function(data) {
-        return data && data.dl ? data.dl : null;
+        return data && data.status && data.url ? data.url : null;
     }
 };
