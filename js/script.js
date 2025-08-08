@@ -80,20 +80,21 @@ async function searchSongs(query) {
     
     try {
         // Fetch data from the API
-        const response = await fetch(`${API_URL.SEARCH}?q=${encodeURIComponent(query)}`);
+        const response = await fetch(`https://jerrycoder.oggyapi.workers.dev/yt-search?q=${encodeURIComponent(query)}`);
         const data = await response.json();
         
         // Hide loading indicator
         loadingElement.style.display = 'none';
         
         // Check if we have valid results
-        if (!data.status || !data.data || data.data.length === 0) {
+        if (!data.status || !data.result || data.result.length === 0) {
             noResultsElement.style.display = 'block';
-            return;
-        }
-        
-        // Format and update playlist
-        currentPlaylist = UTILS.formatSearchResults(data.data);
+          return;
+       }
+
+        // ✅ UPDATED: Use 'result' instead of 'data'
+        currentPlaylist = UTILS.formatSearchResults(data.result);
+
         
         // Display results
         displayResults(currentPlaylist);
@@ -158,6 +159,7 @@ async function playSong(index) {
         const response = await fetch(`https://jerrycoder.oggyapi.workers.dev/ytmp3?url=${encodeURIComponent(song.videoUrl)}`);
         const data = await response.json();
 
+        // ✅ UPDATED: Match download API response structure
         const downloadUrl = data && data.status && data.url ? data.url : null;
         
         if (!downloadUrl) {
@@ -451,7 +453,7 @@ function downloadCurrentSong() {
         .then(data => {
             loadingElement.style.display = 'none';
             
-            const downloadUrl = data && data.data && data.data.dl ? data.data.dl : null;
+            const downloadUrl = data && data.status && data.url ? data.url : null;
             if (downloadUrl) {
                 window.open(downloadUrl, '_blank');
             } else {
